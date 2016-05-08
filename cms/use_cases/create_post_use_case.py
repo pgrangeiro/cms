@@ -1,7 +1,5 @@
 # coding: utf-8
-
-class PostRepository(object):
-    pass
+from cms.repositories import PostRepository
 
 
 class CreatePostUseCase(object):
