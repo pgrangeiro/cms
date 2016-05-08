@@ -9,7 +9,7 @@ setup(
     author_email='contato@paulagrangeiro.com.br',
     url='https://github.com/pgrangeiro/cms',
     license='GNU 3.0',
-    extra_require={
-        'test': 'mock',
+    extras_require={
+        'test': ['mock'],
     },
 )
