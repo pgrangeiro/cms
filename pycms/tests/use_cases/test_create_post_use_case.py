@@ -2,14 +2,14 @@
 import unittest
 from mock import Mock, patch
 
-from cms.use_cases import CreatePostUseCase
+from pycms.use_cases import CreatePostUseCase
 
 
 class CreatePostUseCaseTestCase(unittest.TestCase):
 
     def setUp(self):
         self.dao = Mock()
-        self.repository = patch('cms.use_cases.create_post_use_case.PostRepository').start()
+        self.repository = patch('pycms.use_cases.create_post_use_case.PostRepository').start()
         self.kwargs = {
             'title': 'Title',
             'content': 'Content',
@@ -26,4 +26,12 @@ class CreatePostUseCaseTestCase(unittest.TestCase):
         instance = CreatePostUseCase(self.dao)
 
         instance.execute(**self.kwargs)
-        self.repository().create.assert_called_once_with('Title', 'Content', 'User ID')
+        self.repository().create.assert_called_once_with('Title', 'Content', 'User ID', True)
+
+    def test_execute_calls_repository_correctly_with_draft_param(self):
+        self.kwargs['is_draft'] = False
+        instance = CreatePostUseCase(self.dao)
+
+        instance.execute(**self.kwargs)
+
+        self.repository().create.assert_called_once_with('Title', 'Content', 'User ID', False)

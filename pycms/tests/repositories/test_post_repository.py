@@ -2,7 +2,7 @@
 import unittest
 from mock import Mock
 
-from cms.repositories import PostRepository
+from pycms.repositories import PostRepository
 
 
 class PostRepositoryTestCase(unittest.TestCase):

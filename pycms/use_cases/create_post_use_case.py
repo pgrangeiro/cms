@@ -1,5 +1,5 @@
 # coding: utf-8
-from cms.repositories import PostRepository
+from pycms.repositories import PostRepository
 
 
 class CreatePostUseCase(object):
@@ -7,5 +7,5 @@ class CreatePostUseCase(object):
     def __init__(self, dao):
         self.repository = PostRepository(dao)
 
-    def execute(self, title, content, user_id):
-        self.repository.create(title, content, user_id)
+    def execute(self, title, content, user_id, is_draft=True):
+        self.repository.create(title, content, user_id, is_draft)
