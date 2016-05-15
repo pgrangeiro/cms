@@ -1,4 +1,5 @@
 # coding: utf-8
+from datetime import date
 
 
 class PostRepository(object):
@@ -7,4 +8,5 @@ class PostRepository(object):
         self.dao = dao
 
     def create(self, **kwargs):
-        self.dao.create(**kwargs)
+        created_at = date.today()
+        self.dao.create(created_at=created_at, **kwargs)

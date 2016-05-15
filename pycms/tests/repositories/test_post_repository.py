@@ -1,5 +1,7 @@
 # coding: utf-8
 import unittest
+
+from datetime import date
 from mock import Mock
 
 from pycms.repositories import PostRepository
@@ -23,4 +25,4 @@ class PostRepositoryTestCase(unittest.TestCase):
         instance = PostRepository(self.dao)
 
         instance.create(**self.kwargs)
-        self.dao.create.assert_called_once_with(**self.kwargs)
+        self.dao.create.assert_called_once_with(created_at=date.today(), **self.kwargs)
