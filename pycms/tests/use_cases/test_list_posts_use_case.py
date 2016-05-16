@@ -14,6 +14,7 @@ class ListPostsUseCaseTestCase(unittest.TestCase):
             'title': 'Title',
             'content': 'Content',
             'user_id': 'User ID',
+            'category_id': 2,
         }
 
     def test_initializes_instance_correctly(self):
@@ -26,5 +27,5 @@ class ListPostsUseCaseTestCase(unittest.TestCase):
         instance = ListPostsUseCase(self.dao)
 
         posts = instance.execute(**self.kwargs)
-        self.repository().filter.assert_called_once_with('Title', 'Content', 'User ID')
+        self.repository().filter.assert_called_once_with(title='Title', content='Content', user_id='User ID', category_id=2)
         self.assertEqual(self.repository().filter(), posts)

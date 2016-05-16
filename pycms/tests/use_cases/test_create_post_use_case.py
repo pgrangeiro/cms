@@ -14,6 +14,7 @@ class CreatePostUseCaseTestCase(unittest.TestCase):
             'title': 'Title',
             'content': 'Content',
             'user_id': 'User ID',
+            'categories_ids': [1, 2],
         }
 
     def test_initializes_instance_correctly(self):
@@ -26,7 +27,7 @@ class CreatePostUseCaseTestCase(unittest.TestCase):
         instance = CreatePostUseCase(self.dao)
 
         instance.execute(**self.kwargs)
-        self.repository().create.assert_called_once_with('Title', 'Content', 'User ID', True)
+        self.repository().create.assert_called_once_with('Title', 'Content', 'User ID', [1, 2], True)
 
     def test_execute_calls_repository_correctly_with_draft_param(self):
         self.kwargs['is_draft'] = False
@@ -34,4 +35,4 @@ class CreatePostUseCaseTestCase(unittest.TestCase):
 
         instance.execute(**self.kwargs)
 
-        self.repository().create.assert_called_once_with('Title', 'Content', 'User ID', False)
+        self.repository().create.assert_called_once_with('Title', 'Content', 'User ID', [1, 2], False)
